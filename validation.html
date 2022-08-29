@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Form" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation Form</title>
+    <link rel="stylesheet" href="validation.css" />
+  </head>
+  <body>
+    <script>
+      /*function name*/
+      function validateform() {
+        /*initializing form values*/
+        var name = document.getElementById("personname").value;
+        var address = document.getElementById("personaddress").value;
+        var zipcode = document.getElementById("personzipcode").value;
+        var country = document.getElementById("personcountry").value;
+        var gender=document.querySelector('input[name="gender"]:checked');
+        var preferences=document.querySelector('input[name="preferences"]:checked');
+        var phonenumber = document.getElementById("personnumber").value;
+        var mail = document.getElementById("personmail").value;
+        var password = document.getElementById("personpassword").value;
+        var verifypassword = document.getElementById("personverifypassword").value;
+
+          /*validating name fields*/
+        if (name == "") {  
+          document.getElementById("nameerror").innerHTML =
+            "Please enter the name!";
+          document.getElementById("personname").style.border = "2px solid red";
+          return false;
+        }
+        else{
+            document.getElementById("nameerror").innerHTML="";
+            document.getElementById("personname").style.border="2px solid green";
+        }
+         /*checking name fields contains only alphabets and space*/
+        if (name.match(/^[a-zA-Z\s]+$/)) 
+        true;
+        else {
+          document.getElementById("nameerror").innerHTML ="Name must be alphabets!";
+          return false;
+          
+        }
+         /*validating address fields*/
+        if (address.length > 200) {
+          document.getElementById("addresserror").innerHTML = "Address must be less than 200 characters!";
+          document.getElementById("personaddress").style.border = "2px solid red";
+          return false;
+        }
+            else{
+            document.getElementById("addresserror").innerHTML="";
+            document.getElementById("personaddress").style.border="";
+        }
+         /*validating zipcode fields*/
+        if (zipcode == "") {
+          document.getElementById("zipcodeerror").innerHTML ="Please enter the zipcode";
+          document.getElementById("personzipcode").style.border = "2px solid red";
+          return false;
+        }
+        else{
+            document.getElementById("zipcodeerror").innerHTML="";
+            document.getElementById("personzipcode").style.border="2px solid green";
+        }
+        /*checking zipcode length*/
+        if (zipcode.length != 6) {
+          document.getElementById("zipcodeerror").innerHTML ="zipcode must be 6 characters ";
+          return false;
+        }
+        /*validating country fields*/
+        if (country == "") {
+          document.getElementById("countryerror").innerHTML ="Please select the country";
+          document.getElementById("personcountry").style.border = "2px solid red";
+          return false;
+        }
+        else{
+            document.getElementById("countryerror").innerHTML="";
+            document.getElementById("personcountry").style.border="2px solid green";
+        }
+        /*checking is anyone of the gender is chosen */
+        if(gender == null){
+        document.getElementById("gendererror").innerHTML="please choose the gender";
+        return false;
+       }
+       else{
+            document.getElementById("gendererror").innerHTML="";
+        }
+        /*checking is anyone of the preferences(color) is chosen */
+       if(preferences == null){
+        document.getElementById("preferenceserror").innerHTML="please choose the color";
+        return false;
+       }
+       else{
+            document.getElementById("preferenceserror").innerHTML="";
+        }
+        /*validating phonenumber fields*/
+        if (phonenumber == "") {
+          document.getElementById("phoneerror").innerHTML ="please fill the phone number";
+          document.getElementById("personnumber").style.border = "2px solid red";
+          return false;
+        }
+        else{
+            document.getElementById("phoneerror").innerHTML="";
+            document.getElementById("personnumber").style.border="2px solid green";
+        }
+        /*checking phonenumber contains only numbers*/
+        if (isNaN(phonenumber)) {
+          document.getElementById("phoneerror").innerHTML ="only numbers are allowed";
+          return false;
+        }
+        /*checking phonenumber length is equal to 10 */
+        if (phonenumber.length > 10 || phonenumber.length < 10) {
+          document.getElementById("phoneerror").innerHTML ="phone number should be equal to 10";
+          return false;
+        }
+        /*validating Email fields*/
+        if (mail == "") {
+          document.getElementById("emailerror").innerHTML ="please fill the email address";
+          document.getElementById("personmail").style.border = "2px solid red";
+          return false;
+        }
+        else{
+            document.getElementById("emailerror").innerHTML="";
+            document.getElementById("personmail").style.border="2px solid green";
+        }
+        /*checking Email address is in valid format*/
+        if(mail.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/))
+        true;
+        else{
+          document.getElementById("emailerror").innerHTML = "invalid Email address!";
+          document.getElementById("personmail").style.border = "2px solid red";
+          return false;
+        }
+       /*validating password fields*/
+        if (password == "") {
+          document.getElementById("passworderror").innerHTML = "please enter the password";
+          document.getElementById("personpassword").style.border = "2px solid red";
+          return false;
+        }
+        else{
+            document.getElementById("passworderror").innerHTML="";
+            document.getElementById("personpassword").style.border="2px solid green";
+        }
+        /*checking password is in 6-8 characters length*/
+        if (password.length > 8 || password.length < 6) {
+          document.getElementById("passworderror").innerHTML = "Password should be 6-8 characters length";
+          return false;
+        }
+        /*checking password contains numbers*/
+          if(password.match(/[0-9]/))
+          true;
+          else{ 
+         document.getElementById("passworderror").innerHTML="password must contain numbers";
+          return false;
+          }
+          /*checking password contains special characters*/
+          if(password.match(/[!\@\#\$\%\^\&\*\(\)\_\-\+\=\?\>\<\.\,]/))
+          true;
+          else{ 
+         document.getElementById("passworderror").innerHTML="password must contain Special Characters";
+          return false;
+          }
+          /*validating verify password fields*/
+        if (verifypassword == "") {
+          document.getElementById("personverifypasserror").innerHTML ="please enter the verify password";
+          document.getElementById("personverifypassword").style.border = "2px solid red";
+          return false;
+        }
+        else{
+            document.getElementById("verifypasserror").innerHTML="";
+            document.getElementById("personverifypassword").style.border="2px solid green";
+        }
+      /*checking password and verify password are same*/
+        if (password != verifypassword) {
+          document.getElementById("verifypasserror").innerHTML ="password does not match";
+          return false;
+        }
+        /*storing values and display the values in console*/
+        const values={
+                     name:personname.value,
+                    address:personaddress.value,
+                    zipcode:personzipcode.value,
+                    country:personcountry.value,
+                    gender:gender.value,
+                    preferences:preferences.value,
+                    phonenumber:personnumber.value,
+                    Email:personmail.value,
+                    password:personpassword.value,
+                    verifypassword:personverifypassword.value
+                    }
+                    console.log(values);
+    }
+    </script>
+    <!-- validation form -->
+    <form id="validateform" name="forms" >
+      <!-- main heading -->
+      <h2>Test JavaScript Form Validation</h2>
+      <!-- whole form aligned by tables -->
+      <table>
+         <!-- name -->
+        <tr>
+          <td><label for="name">Name:<span class="star">*</span></label></td>
+          <td><input type="text"  id="personname" placeholder="Name" /></td>
+          <td id="nameerror" class="errormsg"></td>
+        </tr>
+        <!-- address -->
+        <tr>
+          <td><label for="address">Address:</label></td>
+          <td><textarea type="address"  id="personaddress" placeholder="Enter your address"></textarea></td>
+          <td id="addresserror" class="errormsg"></td>
+        </tr>
+        <!-- zipcode -->
+        <tr>
+          <td><label for="zipcode">Zip Code:<span class="star">*</span></label></td>
+          <td><input type="number"  id="personzipcode" placeholder="Zipcode" /></td>
+          <td id="zipcodeerror" class="errormsg"></td>
+        </tr>
+         <!-- country -->
+        <tr>
+          <td><label for="Country">Country:<span class="star">*</span></label></td>
+          <td><select name="country" id="personcountry">
+              <option value="">Please Select...</option>
+              <option value="india">India</option>
+              <option value="pakistan">pakistan</option>
+              <option value="usa">USA</option>
+            </select>
+          </td>
+          <td id="countryerror" class="errormsg"></td>
+        </tr>
+        <!-- gender -->
+        <tr>
+          <td> <label for="Gender">Gender:<span class="star">*</span></label></td>
+          <td><input type="radio" name="gender"  value="male" />Male
+            <input type="radio" name="gender"  value="female" />Female
+          </td>
+          <td id="gendererror" class="errormsg"></td>
+        </tr>
+        <!-- preferences-color -->
+        <tr>
+          <td><label for="Preferences">Preferences:<span class="star">*</span></label></td>
+          <td>
+            <input type="checkbox" name="preferences"  value="Red" />Red
+            <input type="checkbox" name="preferences"  value="Green" />Green
+            <input type="checkbox" name="preferences"  value="Blue" />Blue
+          </td>
+          <td id="preferenceserror" class="errormsg"></td>
+        </tr>
+        <!-- phonenumber -->
+        <tr>
+          <td> <label for="phone">Phone:<span class="star">*</span></label></td>
+          <td><input type="number"  id="personnumber" placeholder="Phonenumber" /></td>
+          <td id="phoneerror" class="errormsg"></td>
+        </tr>
+        <!-- Email -->
+        <tr>
+          <td><label for="Email">Email:<span class="star">*</span></label> </td>
+          <td><input type="email name="mail"  id="personmail"  autocomplete="email" placeholder="Email address"/></td>
+          <td id="emailerror" class="errormsg"></td>
+        </tr>
+        <!-- password -->
+        <tr>
+          <td><label for="password">Password(6-8 characters)<span class="star">*</span></label></td>
+          <td><input type="password"  id="personpassword" autocomplete="Current-password" placeholder="current password"/></td>
+          <td id="passworderror" class="errormsg"></td>
+        </tr>
+        <!-- verify password -->
+        <tr>
+          <td><label for="verifypassword">Verify password:<span class="star">*</span></label></td>
+          <td><input type="password"  id="personverifypassword" autocomplete="New-password" placeholder="new password" /></td>
+          <td id="verifypasserror" class="errormsg"></td>
+        </tr>
+        <!-- send and clear buttons -->
+        <tr>
+          <td>&nbsp;</td>
+          <td><input type="button" value="SEND"  name="submit"  onclick="validateform()"  id="submitbutton" class="buttons" />
+            <input type="reset" value="CLEAR" id="resetbutton"  class="buttons"/>
+          </td>
+        </tr>  
+      </table>
+    </form>
+  </body>
+</html>

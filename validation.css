@@ -1,0 +1,16 @@
+*{
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+.star{
+    color: red;
+}
+td{
+    padding: 10px 10px;
+}
+.buttons{
+    cursor: pointer;
+}
+.errormsg { 
+    color: red;
+ }
